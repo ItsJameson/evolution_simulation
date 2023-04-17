@@ -8,7 +8,6 @@ namespace Evolution
 {
     internal class Organism
     {
-
         private Genome genomeTrait;
         public Genome GenomeTrait
         {

@@ -50,9 +50,10 @@ namespace Evolution
             
             bool isWritten = false;
 
+            // Show organisms in the console for x amount of movement steps:
             for (int k = 0; k < movementSteps; k++)
             {
-                Thread.Sleep(5);
+                Thread.Sleep(50);
                 Console.Clear();
                 for (int i = 0; i < newComm.organismTrait.GenomeTrait.Board.GetLength(0); i++)
                 {
@@ -75,6 +76,8 @@ namespace Evolution
                     }
                     Console.WriteLine();
                 }
+
+                // Now each organims will move itself according to it's movement type genome:
                 foreach (var item in newComm.OrganismArray)
                 {
                     if (item.GenomeTrait.MovementType.ContainsKey("MX"))
@@ -90,12 +93,18 @@ namespace Evolution
                         {
                             item.GenomeTrait.Coord[1] += item.GenomeTrait.MovementType["MY"];
                         }
-                        
+                    }
+                    else if (item.GenomeTrait.MovementType.ContainsKey("MR"))
+                    {
+                        if (item.GenomeTrait.Coord[1] != 0 && item.GenomeTrait.Coord[1] < item.GenomeTrait.Board.GetLength(1) - 1 && item.GenomeTrait.MovementType["MR"] != 0 && item.GenomeTrait.Coord[0] != 0 && item.GenomeTrait.Coord[0] < item.GenomeTrait.Board.GetLength(0) - 1)
+                        {
+                            Random rand = new Random();
+
+                            item.GenomeTrait.Coord[rand.Next(0,2)] += item.GenomeTrait.MovementType["MR"];
+                        }
                     }
                 }
-
             }
         }
-
     }
 }

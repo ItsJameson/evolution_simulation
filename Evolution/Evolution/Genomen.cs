@@ -36,22 +36,26 @@ namespace Evolution
         public Dictionary<string, int> Movement()
         {
             Random random = new Random();
-            Dictionary<string, int> MX = new Dictionary<string, int>();
-            Dictionary<string, int> MY = new Dictionary<string, int>();
-            int randomSelect = random.Next(1,3);
+            var newDict = new Dictionary<string, int>();
+            int randomSelect = random.Next(1,4);
             int minValue = -2;
             int maxValue = 2;
             int randomValue = random.Next(minValue, maxValue);
 
             if (randomSelect == 1)
             {
-                MX.Add("MX", randomValue);
-                return MX;
+                newDict.Add("MX", randomValue);
+                return newDict;
+            }
+            else if (randomSelect == 2)
+            {
+                newDict.Add("MY", randomValue);
+                return newDict;
             }
             else
             {
-                MY.Add("MY", randomValue);
-                return MY;
+                newDict.Add("MR", randomValue);
+                return newDict;
             }
         }
      
